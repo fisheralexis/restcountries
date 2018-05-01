@@ -6,4 +6,4 @@ to run the project:
 
 php -S localhost:8000 api.php
 
-visit localhost:8000/index.html 
+Now that the server is running, visit localhost:8000/index.html 
