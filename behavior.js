@@ -23,17 +23,17 @@ function search(){
 }
 
 function doSearch(searchString = ""){
-	//
-	//construct request
+	// Creates and performs the HTML request.  
+	// This is currently synchronous, could be moved to asynchronous.
 	var req = new XMLHttpRequest();
 	var requestURL="/api/"+searchString;
 	req.open("GET",requestURL, false);
 	req.send();
 	return req.responseText;
-
 }
 
 function displayResults(results){
+	//display and populate the results div
 	hideError();
 	var resultsDiv = document.getElementById("results");
 	resultsDiv.innerHTML="";
@@ -44,6 +44,7 @@ function displayResults(results){
 	}
 	var data = JSON.parse(results);
 	//name;alpha2Code;alpha3Code;flag;region;subregion;population;languages
+
 	var table=" <table> <tr><th>Flag</th> <th>Country</th> <th>Code 2</th> <th>Code 3</th>";
 	table+="<th>Region</th> <th>Subregion</th> <th>Population</th> <th>Languages</th></tr> ";
 	for(var i = 0; i < data.countries.length; i++){
@@ -59,7 +60,6 @@ function displayResults(results){
 			}
 		}
 		row += "</td> </tr>";
-
 		table += row;
 	}
 	table+="</table>";
@@ -86,12 +86,14 @@ function displayResults(results){
 	
 }
 function hideResults(){
+	//clear and hide the results div
 	var resultsDiv = document.getElementById("results");
 	resultsDiv.innerHTML="";
 	resultsDiv.style.display = "none";
 }
 
 function displayError(){
+	//display the error div and message
 	var errorDiv = document.getElementById("error");
 	hideResults();
 	errorDiv.innerHTML = "<h2>Error!</h2>"
@@ -99,12 +101,14 @@ function displayError(){
 
 }
 function hideError(){
+	//clear and hide the error div
 	var errorDiv = document.getElementById("error");
 	errorDiv.innerHTML = "";
 	errorDiv.style.display = "none";
 }
 
 function onBodyLoad(){
+	//hide the result and error div 
 	hideError();
 	hideResults();
 }

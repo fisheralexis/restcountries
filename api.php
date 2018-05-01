@@ -26,15 +26,15 @@ if (!$data){
 	$url=$name_base.$Request[1];
 	$data=getData($url);
 }
-$jsonData=json_decode($data); //is it a list or not?
-$returnData = (object)[];
+$jsonData=json_decode($data); 
+$returnData = (object)[]; //casts an empty array to object class to get an empty object
 $returnData->countries=[];
 $returnData->regions=[];
 $returnData->subregions=[];
 if (!$jsonData){
 	return "None";
 }
-if (!(is_array($jsonData))){
+if (!(is_array($jsonData))){ //if it's not a list, we have a single country. Nest it so we can iterate over it.
 	$jsonData = [$jsonData];
 }
 foreach($jsonData as $country){
@@ -74,6 +74,7 @@ function getData($url){
 }
 
 function countryCmp($a,$b){
+	//country comparison, sort on names alphabetically then population
 	if (strcmp($a->name, $b->name) == 0) {
 		if ($a->population == $b->population) {
 			return 0;
