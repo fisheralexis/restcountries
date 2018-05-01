@@ -1,0 +1,21 @@
+body{
+	font-family: sans-serif;
+}
+
+
+div {
+	border: 2px blue solid;
+	background-color : lightblue;
+	border-radius: 5px;
+	padding: 10px 10px 10px 10px;
+	margin: auto;
+	width: 85%;
+}
+
+img {
+	width: 80px;
+}
+
+table,  td {
+	border: 1px solid darkblue;
+}
